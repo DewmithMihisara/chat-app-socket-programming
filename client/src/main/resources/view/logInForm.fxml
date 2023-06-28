@@ -5,12 +5,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LogInFormController">
    <children>
-      <TextField fx:id="usrNameTxt" layoutX="58.0" layoutY="337.0" onAction="#usrNameTxtOnAction" prefHeight="43.0" prefWidth="286.0">
+      <TextField fx:id="usrNameTxt" layoutX="58.0" layoutY="337.0" onAction="#usrNameTxtOnAction" prefHeight="43.0" prefWidth="286.0" style="-fx-background-color: tranceperant;">
          <font>
             <Font size="16.0" />
          </font>
@@ -21,5 +21,6 @@
             <Image url="@../img/user.png" />
          </image>
       </ImageView>
+      <Line fx:id="line" endX="144.0" layoutX="200.0" layoutY="380.0" startX="-142.00001525878906" strokeWidth="3.0" />
    </children>
 </AnchorPane>
