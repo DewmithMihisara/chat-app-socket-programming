@@ -26,6 +26,7 @@ public class LogInFormController {
 
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.setTitle(usrNameTxt.getText());
         stage.show();
     }
 
