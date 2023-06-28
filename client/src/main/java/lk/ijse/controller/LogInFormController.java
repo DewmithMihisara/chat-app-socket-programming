@@ -22,10 +22,12 @@ public class LogInFormController {
 
     @FXML
     private TextField usrNameTxt;
+    public static String usrName;
 
     @FXML
     void logInBtnOnAction(ActionEvent event) throws IOException {
-        if(usrNameTxt.getText().equals("")){
+        usrName=usrNameTxt.getText();
+        if(usrName.equals("")){
             shakeLine();
         }else {
             defaultLine();
@@ -35,7 +37,7 @@ public class LogInFormController {
 
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle(usrNameTxt.getText());
+            stage.setTitle(usrName);
             stage.show();
 
             usrNameTxt.setText("");
