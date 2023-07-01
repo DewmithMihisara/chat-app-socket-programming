@@ -12,7 +12,7 @@ public class Main {
         ServerSocket serversocket;
         try {
             serversocket =new ServerSocket(4001);
-            while(true) {
+            while(!serversocket.isClosed()) {
                 Socket socket = serversocket.accept();
                 ServerThread serverThread = new ServerThread(socket, threadList);
                 threadList.add(serverThread);
