@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LogInFormController">
    <children>
-      <TextField fx:id="usrNameTxt" layoutX="58.0" layoutY="337.0" onAction="#usrNameTxtOnAction" onKeyTyped="#spaceBlockOnKeyTyped" onMouseClicked="#mouseClickOnAction" prefHeight="43.0" prefWidth="286.0" style="-fx-background-color: tranceperant;">
+      <TextField fx:id="usrNameTxt" layoutX="58.0" layoutY="337.0" onAction="#usrNameTxtOnAction" onKeyTyped="#typingValidationOnKeyTyped" onMouseClicked="#mouseClickOnAction" prefHeight="43.0" prefWidth="286.0" style="-fx-background-color: tranceperant;">
          <font>
             <Font size="16.0" />
          </font>

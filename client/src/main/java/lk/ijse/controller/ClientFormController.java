@@ -36,17 +36,15 @@ public class ClientFormController implements Initializable {
 
     @FXML
     private Text usrNameTxt;
-    String []msg;
-    String message;
-
+    private String message;
     {
         message = "";
     }
-    String usr;
-    Socket socket;
-    DataOutputStream dataOutputStream;
-    DataInputStream dataInputStream;
-    ArrayList<String> wordList;
+    private String usr;
+    private Socket socket;
+    private DataOutputStream dataOutputStream;
+    private DataInputStream dataInputStream;
+    private ArrayList<String> wordList;
     @FXML
     void emojiBtnOnAction(ActionEvent event) {
 

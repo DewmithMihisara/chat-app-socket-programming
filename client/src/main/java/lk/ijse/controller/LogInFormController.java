@@ -27,12 +27,10 @@ public class LogInFormController {
     private Line line;
     @FXML
     private Button logInBtn;
-
     @FXML
     private TextField usrNameTxt;
     public static String usrName;
     Shake shake;
-
     @FXML
     void logInBtnOnAction(ActionEvent event) throws IOException {
         usrName=usrNameTxt.getText();
@@ -52,21 +50,17 @@ public class LogInFormController {
             usrNameTxt.setText("");
         }
     }
-    @FXML
-    void spaceBlockOnKeyTyped(KeyEvent event) {
-        if (" ".equals(event.getCharacter())) {
-            String trimmedText = usrNameTxt.getText().trim();
-            usrNameTxt.setText(trimmedText);
-            usrNameTxt.positionCaret(trimmedText.length());
-        }
-    }
 
+    @FXML
+    void typingValidationOnKeyTyped(KeyEvent event) {
+        spaceBlockOnKeyTyped(event);
+        handleKeyTyped();
+    }
     @FXML
     void mouseClickOnAction(MouseEvent event) {
         defaultLine();
         shake.stop();
     }
-
     @FXML
     void usrNameTxtOnAction(ActionEvent event) {
         logInBtn.fire();
@@ -81,5 +75,20 @@ public class LogInFormController {
     }
     void defaultLine(){
         this.line.setStroke(Color.BLACK);
+    }
+    void spaceBlockOnKeyTyped(KeyEvent event) {
+        if (" ".equals(event.getCharacter())) {
+            String trimmedText = usrNameTxt.getText().trim();
+            usrNameTxt.setText(trimmedText);
+            usrNameTxt.positionCaret(trimmedText.length());
+        }
+    }
+    private void handleKeyTyped() {
+        String inputText = usrNameTxt.getText();
+        if (inputText.length() > 15) {
+            String limitedText = inputText.substring(0, 15);
+            usrNameTxt.setText(limitedText);
+            usrNameTxt.positionCaret(limitedText.length());
+        }
     }
 }
