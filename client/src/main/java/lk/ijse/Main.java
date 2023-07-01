@@ -14,6 +14,7 @@ public class Main extends Application {
         Parent parent= FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/logInForm.fxml")));
         stage.setTitle("LogIn");
         stage.setScene(new Scene(parent));
+        stage.setResizable(false);
         stage.show();
     }
 }
