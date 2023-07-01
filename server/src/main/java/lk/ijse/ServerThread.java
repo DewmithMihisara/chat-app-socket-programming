@@ -27,8 +27,10 @@ public class ServerThread extends Thread{
 
             while(true) {
                 message=dataInputStream.readUTF();
-                dataOutputStream.writeUTF(message);
-                dataOutputStream.flush();
+                for (ServerThread serverThread:threadList){
+                    serverThread.dataOutputStream.writeUTF(message);
+                    serverThread.dataOutputStream.flush();
+                }
             }
         } catch (Exception e) {
 
