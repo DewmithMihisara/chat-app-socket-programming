@@ -85,9 +85,7 @@ public class ClientFormController implements Initializable {
                     }else {
                         chatTxtArea.appendText("\n" + usr + " : " + preparedMsg);
                     }
-
                 }
-
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
