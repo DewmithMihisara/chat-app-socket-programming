@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -18,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.function.UnaryOperator;
 
 public class LogInFormController {
     @FXML
@@ -47,6 +50,14 @@ public class LogInFormController {
             stage.show();
 
             usrNameTxt.setText("");
+        }
+    }
+    @FXML
+    void spaceBlockOnKeyTyped(KeyEvent event) {
+        if (" ".equals(event.getCharacter())) {
+            String trimmedText = usrNameTxt.getText().trim();
+            usrNameTxt.setText(trimmedText);
+            usrNameTxt.positionCaret(trimmedText.length());
         }
     }
 
