@@ -1,14 +1,16 @@
 package lk.ijse.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.io.DataInputStream;
@@ -21,9 +23,9 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class ClientFormController implements Initializable {
-
     @FXML
-    private TextArea chatTxtArea;
+    private VBox vboxForChat;
+
 
     @FXML
     private Button emojiBtn;
@@ -33,6 +35,8 @@ public class ClientFormController implements Initializable {
 
     @FXML
     private TextField msgTxt;
+    @FXML
+    private ScrollPane scrlPane;
 
     @FXML
     private Text usrNameTxt;
@@ -45,6 +49,8 @@ public class ClientFormController implements Initializable {
     private DataOutputStream dataOutputStream;
     private DataInputStream dataInputStream;
     private ArrayList<String> wordList;
+    Label label;
+
     @FXML
     void emojiBtnOnAction(ActionEvent event) {
 
@@ -67,6 +73,17 @@ public class ClientFormController implements Initializable {
         setName();
         msg();
     }
+    @FXML
+    void scrlOnMouseEntered(MouseEvent event) {
+        scrlPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrlPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+    }
+
+    @FXML
+    void scrlOnMouseExited(MouseEvent event) {
+        scrlPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrlPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+    }
 
     private void msg() {
         new Thread(() -> {
@@ -75,14 +92,22 @@ public class ClientFormController implements Initializable {
                 dataInputStream = new DataInputStream(socket.getInputStream());
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 while (socket.isConnected()) {
+                    HBox hBox=new HBox(12);
                     message = dataInputStream.readUTF();
                     splitMsg(message);
                     String preparedMsg=makeMsg();
+                    String lbl;
                     if (usr.equals(usrNameTxt.getText())){
-                        chatTxtArea.appendText("\n" + "Me : " + preparedMsg);
+                        lbl="\n" + "Me : " + preparedMsg;
                     }else {
-                        chatTxtArea.appendText("\n" + usr + " : " + preparedMsg);
+                        lbl="\n" + usr + " : " + preparedMsg;
                     }
+                    Platform.runLater(() -> {
+                        label=new Label(lbl);
+                        hBox.getChildren().add(label);
+                        vboxForChat.getChildren().add(hBox);
+                    });
+                    scrlPane.vvalueProperty().bind(vboxForChat.heightProperty());
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
