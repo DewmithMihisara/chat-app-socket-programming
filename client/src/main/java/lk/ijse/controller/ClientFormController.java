@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import lk.ijse.emoji.EmojiBox;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -40,6 +41,8 @@ public class ClientFormController implements Initializable {
 
     @FXML
     private Text usrNameTxt;
+    @FXML
+    private AnchorPane mainPane;
     private String message;
     {
         message = "";
@@ -51,10 +54,6 @@ public class ClientFormController implements Initializable {
     private ArrayList<String> wordList;
     Label label;
 
-    @FXML
-    void emojiBtnOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void imgBtnOnAction(ActionEvent event) {
@@ -72,6 +71,7 @@ public class ClientFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setName();
         msg();
+        emoji();
     }
     @FXML
     void scrlOnMouseEntered(MouseEvent event) {
@@ -113,6 +113,35 @@ public class ClientFormController implements Initializable {
                 throw new RuntimeException(e);
             }
         }).start();
+    }
+    private void emoji() {
+        EmojiBox emojiPicker = new EmojiBox();
+
+        VBox vBox = new VBox(emojiPicker);
+        vBox.setPrefSize(75,110);
+        vBox.setLayoutX(43);
+        vBox.setLayoutY(538);
+        vBox.setStyle("-fx-font-size: 15");
+
+        mainPane.getChildren().add(vBox);
+
+        emojiPicker.setVisible(false);
+
+        emojiBtn.setOnAction(event -> {
+            if (emojiPicker.isVisible()){
+                emojiPicker.setVisible(false);
+            }else {
+                emojiPicker.setVisible(true);
+            }
+        });
+
+        emojiPicker.getEmojiListView().setOnMouseClicked(event -> {
+            String selectedEmoji = emojiPicker.getEmojiListView().getSelectionModel().getSelectedItem();
+            if (selectedEmoji != null) {
+                msgTxt.setText(msgTxt.getText()+selectedEmoji);
+            }
+            emojiPicker.setVisible(false);
+        });
     }
 
     private String makeMsg() {

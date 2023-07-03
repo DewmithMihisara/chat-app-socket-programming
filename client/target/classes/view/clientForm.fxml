@@ -11,11 +11,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.ClientFormController">
+<AnchorPane fx:id="mainPane" prefHeight="700.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.ClientFormController">
    <children>
-      <Line endX="225.0" layoutX="137.0" layoutY="565.0" startX="-100.0" AnchorPane.rightAnchor="37.5" />
-      <TextField fx:id="msgTxt" layoutX="74.0" layoutY="527.0" onAction="#msgTxtOnAction" prefHeight="36.0" prefWidth="254.0" style="-fx-background-color: tranceparent;" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="72.0" />
-      <Button fx:id="emojiBtn" layoutX="35.0" layoutY="527.0" mnemonicParsing="false" onAction="#emojiBtnOnAction" prefHeight="36.0" prefWidth="36.0">
+      <Line endX="241.0" layoutX="188.0" layoutY="674.0" startX="-100.0" AnchorPane.rightAnchor="90.5" />
+      <TextField fx:id="msgTxt" layoutX="91.0" layoutY="638.0" onAction="#msgTxtOnAction" prefHeight="36.0" prefWidth="338.0" style="-fx-background-color: tranceparent;" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="91.0" />
+      <Button fx:id="emojiBtn" layoutX="53.0" layoutY="638.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="37.0" AnchorPane.leftAnchor="53.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -24,7 +24,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="imgBtn" layoutX="329.0" layoutY="527.0" mnemonicParsing="false" onAction="#imgBtnOnAction" prefHeight="36.0" prefWidth="36.0">
+      <Button fx:id="imgBtn" layoutX="429.0" layoutY="638.0" mnemonicParsing="false" onAction="#imgBtnOnAction" prefHeight="36.0" prefWidth="36.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -43,7 +43,7 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <ScrollPane fx:id="scrlPane" layoutX="35.0" layoutY="91.0" onMouseEntered="#scrlOnMouseEntered" onMouseExited="#scrlOnMouseExited" prefHeight="418.0" prefWidth="332.0">
+      <ScrollPane fx:id="scrlPane" layoutX="53.0" layoutY="95.0" onMouseEntered="#scrlOnMouseEntered" onMouseExited="#scrlOnMouseExited" prefHeight="441.0" prefWidth="414.0">
          <content>
             <VBox fx:id="vboxForChat" prefWidth="312.0" />
          </content>
