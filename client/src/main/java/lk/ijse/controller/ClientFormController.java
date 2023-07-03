@@ -4,18 +4,18 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import lk.ijse.emoji.EmojiBox;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
@@ -53,11 +53,23 @@ public class ClientFormController implements Initializable {
     private DataInputStream dataInputStream;
     private ArrayList<String> wordList;
     Label label;
-
+    HBox hBox;
 
     @FXML
     void imgBtnOnAction(ActionEvent event) {
-
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.jpeg", "*.png", "*.gif");
+        fileChooser.getExtensionFilters().add(imageFilter);
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            String imagePath = selectedFile.getAbsolutePath();
+            Platform.runLater(() -> {
+                label=new Label(imagePath);
+                hBox.getChildren().add(label);
+                vboxForChat.getChildren().add(hBox);
+            });
+        }
+        selectedFile=null;
     }
 
     @FXML
@@ -92,7 +104,7 @@ public class ClientFormController implements Initializable {
                 dataInputStream = new DataInputStream(socket.getInputStream());
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 while (socket.isConnected()) {
-                    HBox hBox=new HBox(12);
+                    hBox=new HBox(12);
                     message = dataInputStream.readUTF();
                     splitMsg(message);
                     String preparedMsg=makeMsg();
@@ -128,11 +140,7 @@ public class ClientFormController implements Initializable {
         emojiPicker.setVisible(false);
 
         emojiBtn.setOnAction(event -> {
-            if (emojiPicker.isVisible()){
-                emojiPicker.setVisible(false);
-            }else {
-                emojiPicker.setVisible(true);
-            }
+            emojiPicker.setVisible(!emojiPicker.isVisible());
         });
 
         emojiPicker.getEmojiListView().setOnMouseClicked(event -> {
@@ -146,8 +154,7 @@ public class ClientFormController implements Initializable {
 
     private String makeMsg() {
         wordList.remove(0);
-        String msg=String.join(" ",wordList);
-        return msg;
+        return String.join(" ",wordList);
     }
 
     private void splitMsg(String message) {

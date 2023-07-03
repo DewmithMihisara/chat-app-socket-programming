@@ -1,9 +1,6 @@
 package lk.ijse.controller;
 
-import animatefx.animation.AnimateFXInterpolator;
-import animatefx.animation.AnimationFX;
 import animatefx.animation.Shake;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -20,7 +16,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
-import java.util.function.UnaryOperator;
 
 public class LogInFormController {
     @FXML
@@ -67,7 +62,7 @@ public class LogInFormController {
         logInBtn.fire();
     }
     void shakeLine(){
-        this.line.setStroke(Color.RED);
+        line.setStroke(Color.RED);
         shake=new Shake(line);
         shake.setOnFinished(actionEvent -> {
             defaultLine();
@@ -75,7 +70,7 @@ public class LogInFormController {
         shake.play();
     }
     void defaultLine(){
-        this.line.setStroke(Color.BLACK);
+        line.setStroke(Color.BLACK);
     }
     void spaceBlockOnKeyTyped(KeyEvent event) {
         if (" ".equals(event.getCharacter())) {

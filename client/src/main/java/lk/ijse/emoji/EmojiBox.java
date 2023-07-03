@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmojiBox extends VBox {
-    private ListView<String> emojiListView;
+    private final ListView<String> emojiListView;
    public EmojiBox(){
         List<String> emojis = new ArrayList<>();
 
