@@ -55,7 +55,9 @@ public class LogInFormController {
     @FXML
     void mouseClickOnAction(MouseEvent event) {
         defaultLine();
-        shake.stop();
+        if (shake !=null){
+            shake.stop();
+        }
     }
     @FXML
     void usrNameTxtOnAction(ActionEvent event) {
