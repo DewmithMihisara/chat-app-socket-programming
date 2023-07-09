@@ -22,5 +22,6 @@
          </image>
       </ImageView>
       <Line fx:id="line" endX="144.0" layoutX="200.0" layoutY="380.0" startX="-142.00001525878906" strokeWidth="3.0" />
+      <Button layoutX="297.0" layoutY="33.0" mnemonicParsing="false" onAction="#clsBtnOnAction" text="close" />
    </children>
 </AnchorPane>

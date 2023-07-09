@@ -28,7 +28,7 @@ public class LogInFormController {
     @FXML
     private TextField usrNameTxt;
     public static String usrName;
-    Socket socket;
+    static Socket socket;
     DataOutputStream dataOutputStream;
     Shake shake;
     static Stage stage;
@@ -72,6 +72,13 @@ public class LogInFormController {
     @FXML
     void usrNameTxtOnAction(ActionEvent event) {
         logInBtn.fire();
+    }
+    @FXML
+    void clsBtnOnAction(ActionEvent event) {
+
+    }
+    public static void clsStg() throws IOException {
+        socket.close();
     }
     void shakeLine(){
         line.setStroke(Color.RED);

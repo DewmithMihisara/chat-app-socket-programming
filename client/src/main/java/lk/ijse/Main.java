@@ -5,7 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lk.ijse.controller.LogInFormController;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class Main extends Application {
@@ -16,6 +19,13 @@ public class Main extends Application {
         stage.setTitle("LogIn");
         stage.setScene(new Scene(parent));
         stage.setResizable(false);
+        stage.setOnCloseRequest(windowEvent -> {
+            try {
+                LogInFormController.clsStg();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         stage.show();
     }
 }
