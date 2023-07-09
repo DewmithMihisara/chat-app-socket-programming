@@ -14,7 +14,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.Socket;
 import java.util.Objects;
 
 public class LogInFormController {
@@ -25,7 +28,10 @@ public class LogInFormController {
     @FXML
     private TextField usrNameTxt;
     public static String usrName;
+    Socket socket;
+    DataOutputStream dataOutputStream;
     Shake shake;
+    static Stage stage;
     @FXML
     void logInBtnOnAction(ActionEvent event) throws IOException {
         usrName=usrNameTxt.getText();
@@ -34,10 +40,14 @@ public class LogInFormController {
         }else {
             defaultLine();
 
+            socket = new Socket("localhost", 4001);
+            dataOutputStream = new DataOutputStream(socket.getOutputStream());
+            dataOutputStream.writeUTF("/usrLog//!-> "+usrName);
+            dataOutputStream.flush();
             Parent anchorPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/clientForm.fxml")));
             Scene scene = new Scene(anchorPane);
 
-            Stage stage = new Stage();
+            stage = new Stage();
             stage.setScene(scene);
             stage.setTitle(usrName);
             stage.setResizable(false);

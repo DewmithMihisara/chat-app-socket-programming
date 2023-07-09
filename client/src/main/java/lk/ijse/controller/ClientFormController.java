@@ -7,7 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,10 +23,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.ResourceBundle;
-import java.util.Base64;
+import java.util.*;
 
 public class ClientFormController implements Initializable {
     @FXML
@@ -70,7 +67,7 @@ public class ClientFormController implements Initializable {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             String imageAbsalutePath = selectedFile.getAbsolutePath();
-            dataOutputStream.writeUTF(imageAbsalutePath);
+            dataOutputStream.writeUTF(usrNameTxt.getText()+"!!!!split!!!!"+imageAbsalutePath);
             dataOutputStream.flush();
 //            Path imgPath= Paths.get(imageAbsalutePath);
 //            byte[] imageData = Files.readAllBytes(imgPath);
@@ -90,12 +87,17 @@ public class ClientFormController implements Initializable {
 //            dataOutputStream.flush();
         }
     }
-
     @FXML
     void msgTxtOnAction(ActionEvent event) throws IOException {
         dataOutputStream.writeUTF(usrNameTxt.getText() + " " + msgTxt.getText());
         dataOutputStream.flush();
         msgTxt.setText("");
+    }
+    @FXML
+    void logOutBtnOnAction(ActionEvent event) throws IOException {
+        dataOutputStream.writeUTF("/usrLogOut//!-> "+usrNameTxt.getText());
+        dataOutputStream.flush();
+        LogInFormController.stage.close();
     }
 
     @Override
@@ -128,13 +130,20 @@ public class ClientFormController implements Initializable {
                     message = dataInputStream.readUTF();
                     if (message.endsWith(".jpg") ||message.endsWith(".jpeg") ||message.endsWith(".png") ||message.endsWith(".gif")){
                         Platform.runLater(() ->{
-                            File file=new File(message);
+                            String path=splitImg(message);
+                            File file=new File(path);
                             Image image=new Image(file.toURI().toString());
                             ImageView img=new ImageView(image);
                             img.setFitWidth(100);
                             img.setFitHeight(100);
-
-                            hBox.getChildren().add(img);
+                            if (usr.equals(usrNameTxt.getText())){
+                                label=new Label("Me :\n\n");
+                                label.setGraphic(img);
+                            }else {
+                                label=new Label(usr+" :\n\n");
+                                label.setGraphic(img);
+                            }
+                            hBox.getChildren().add(label);
                             vboxForChat.getChildren().add(hBox);
                         });
                     }else {
@@ -158,6 +167,12 @@ public class ClientFormController implements Initializable {
                 throw new RuntimeException(e);
             }
         }).start();
+    }
+
+    private String splitImg(String message) {
+        String[] words = message.split("!!!!split!!!!");
+        this.usr = words[0];
+        return words[1];
     }
 
     private void emoji() {

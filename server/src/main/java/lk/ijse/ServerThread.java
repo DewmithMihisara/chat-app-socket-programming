@@ -27,10 +27,20 @@ public class ServerThread extends Thread{
 
             while(true) {
                 message=dataInputStream.readUTF();
-                for (ServerThread serverThread:threadList){
-                    serverThread.dataOutputStream.writeUTF(message);
-                    serverThread.dataOutputStream.flush();
+                if (message.startsWith("/usrLog//!-> ")){
+                    String[] usr=message.split("/usrLog//!-> ");
+                    System.out.println(usr[1]+" Log into chat!");
+                } else if (message.startsWith("/usrLogOut//!-> ")) {
+                    String[]usr=message.split("/usrLogOut//!-> ");
+                    System.out.println(usr[1] + " Log Out in Chat!");
+                    threadList.remove(this);
+                } else {
+                    for (ServerThread serverThread:threadList){
+                        serverThread.dataOutputStream.writeUTF(message);
+                        serverThread.dataOutputStream.flush();
+                    }
                 }
+
             }
         } catch (Exception e) {
 

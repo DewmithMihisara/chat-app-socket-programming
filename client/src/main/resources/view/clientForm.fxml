@@ -48,5 +48,6 @@
             <VBox fx:id="vboxForChat" prefWidth="312.0" />
          </content>
       </ScrollPane>
+      <Button layoutX="412.0" layoutY="19.0" mnemonicParsing="false" onAction="#logOutBtnOnAction" text="log out" />
    </children>
 </AnchorPane>
