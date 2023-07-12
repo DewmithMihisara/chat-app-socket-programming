@@ -178,10 +178,10 @@ public class ClientFormController implements Initializable {
         EmojiBox emojiPicker = new EmojiBox();
 
         VBox vBox = new VBox(emojiPicker);
-        vBox.setPrefSize(75, 110);
-        vBox.setLayoutX(43);
+        vBox.setPrefSize(90, 110);
+        vBox.setLayoutX(390);
         vBox.setLayoutY(538);
-        vBox.setStyle("-fx-font-size: 15");
+        vBox.setStyle("-fx-font-size: 20");
 
         mainPane.getChildren().add(vBox);
 

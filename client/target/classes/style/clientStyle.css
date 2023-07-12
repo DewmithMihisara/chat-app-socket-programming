@@ -1,0 +1,12 @@
+.transparent-scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: White;
+    /*-fx-background-insets: 0;*/
+}
+.button-shadow {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 0, 1);
+}
+
+.button-shadow:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 2);
+}

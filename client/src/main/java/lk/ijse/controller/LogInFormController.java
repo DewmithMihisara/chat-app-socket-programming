@@ -78,10 +78,7 @@ public class LogInFormController {
         logInBtn.fire();
     }
 
-    @FXML
-    void clsBtnOnAction(ActionEvent event) {
 
-    }
 
     public static void clsStg() throws IOException {
         if (socket != null) {
