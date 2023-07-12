@@ -22,7 +22,7 @@
          <font>
             <Font size="19.0" />
          </font></TextField>
-      <Button fx:id="emojiBtn" layoutX="413.0" layoutY="643.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 50; -fx-background-color: tranceparent;" styleClass="button-shadow" stylesheets="@../style/clientStyle.css" AnchorPane.rightAnchor="57.0">
+      <Button fx:id="emojiBtn" layoutX="405.0" layoutY="643.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 50; -fx-background-color: tranceparent;" styleClass="bt-shadow" stylesheets="@../style/clientStyle.css" AnchorPane.rightAnchor="47.0">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -31,7 +31,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="imgBtn" layoutX="463.0" layoutY="643.0" mnemonicParsing="false" onAction="#imgBtnOnAction" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 50; -fx-background-color: tranceparent;" styleClass="button-shadow" stylesheets="@../style/clientStyle.css">
+      <Button fx:id="imgBtn" layoutX="452.0" layoutY="645.0" mnemonicParsing="false" onAction="#imgBtnOnAction" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 50; -fx-background-color: tranceparent;" styleClass="bt-shadow" stylesheets="@../style/clientStyle.css">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
