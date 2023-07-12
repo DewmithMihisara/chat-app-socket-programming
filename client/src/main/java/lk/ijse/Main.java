@@ -22,6 +22,7 @@ public class Main extends Application {
         stage.setOnCloseRequest(windowEvent -> {
             try {
                 LogInFormController.clsStg();
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -50,7 +50,6 @@ public class ClientFormController implements Initializable {
     {
         message = "";
     }
-
     private String usr;
     private Socket socket;
     private DataOutputStream dataOutputStream;
@@ -93,12 +92,12 @@ public class ClientFormController implements Initializable {
         dataOutputStream.flush();
         msgTxt.setText("");
     }
-    @FXML
-    void logOutBtnOnAction(ActionEvent event) throws IOException {
-        dataOutputStream.writeUTF("/usrLogOut//!-> "+usrNameTxt.getText());
-        dataOutputStream.flush();
-        LogInFormController.stage.close();
-    }
+//    @FXML
+//    void logOutBtnOnAction(ActionEvent event) throws IOException {
+//        dataOutputStream.writeUTF("/usrLogOut//!-> "+usrNameTxt.getText());
+//        dataOutputStream.flush();
+//        LogInFormController.stage.close();
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

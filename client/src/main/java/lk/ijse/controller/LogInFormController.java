@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -32,17 +33,18 @@ public class LogInFormController {
     DataOutputStream dataOutputStream;
     Shake shake;
     static Stage stage;
+
     @FXML
     void logInBtnOnAction(ActionEvent event) throws IOException {
-        usrName=usrNameTxt.getText();
-        if(usrName.equals("")){
+        usrName = usrNameTxt.getText();
+        if (usrName.equals("")) {
             shakeLine();
-        }else {
+        } else {
             defaultLine();
 
             socket = new Socket("localhost", 4001);
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
-            dataOutputStream.writeUTF("/usrLog//!-> "+usrName);
+            dataOutputStream.writeUTF("/usrLog//!-> " + usrName);
             dataOutputStream.flush();
             Parent anchorPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/clientForm.fxml")));
             Scene scene = new Scene(anchorPane);
@@ -62,35 +64,44 @@ public class LogInFormController {
         spaceBlockOnKeyTyped(event);
         handleKeyTyped();
     }
+
     @FXML
     void mouseClickOnAction(MouseEvent event) {
         defaultLine();
-        if (shake !=null){
+        if (shake != null) {
             shake.stop();
         }
     }
+
     @FXML
     void usrNameTxtOnAction(ActionEvent event) {
         logInBtn.fire();
     }
+
     @FXML
     void clsBtnOnAction(ActionEvent event) {
 
     }
+
     public static void clsStg() throws IOException {
-        socket.close();
+        if (socket != null) {
+            socket.close();
+        }
     }
-    void shakeLine(){
+
+    void shakeLine() {
         line.setStroke(Color.RED);
-        shake=new Shake(line);
+        shake = new Shake(line);
         shake.setOnFinished(actionEvent -> {
             defaultLine();
         });
         shake.play();
     }
-    void defaultLine(){
+
+    void defaultLine() {
         line.setStroke(Color.BLACK);
     }
+
     void spaceBlockOnKeyTyped(KeyEvent event) {
         if (" ".equals(event.getCharacter())) {
             String trimmedText = usrNameTxt.getText().trim();
@@ -98,6 +109,7 @@ public class LogInFormController {
             usrNameTxt.positionCaret(trimmedText.length());
         }
     }
+
     private void handleKeyTyped() {
         String inputText = usrNameTxt.getText();
         if (inputText.length() > 15) {
