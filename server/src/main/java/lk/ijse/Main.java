@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Main {
-
+    static ServerThread serverThread;
     public static void main(String[] args) {
         ArrayList<ServerThread> threadList = new ArrayList<>();
         ServerSocket serversocket;
@@ -14,9 +14,10 @@ public class Main {
             serversocket =new ServerSocket(4029);
             while(!serversocket.isClosed()) {
                 Socket socket = serversocket.accept();
-                ServerThread serverThread = new ServerThread(socket, threadList);
+                serverThread = new ServerThread(socket, threadList);
                 threadList.add(serverThread);
                 serverThread.start();
+                System.out.println("size "+ threadList.size());
             }
         } catch (Exception e) {
             System.out.println("Error occured in main: " + e.getStackTrace());
@@ -24,4 +25,5 @@ public class Main {
             System.out.println("main");
         }
     }
+
 }
