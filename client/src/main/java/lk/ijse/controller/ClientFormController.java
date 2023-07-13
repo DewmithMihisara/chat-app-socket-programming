@@ -160,24 +160,58 @@ public class ClientFormController implements Initializable {
                                 hBox2.setPadding(new Insets(5,5,5,10));
                                 hBox2.getChildren().add(img);
 
-                                vboxForChat.getChildren().add(hBox1);
-                                vboxForChat.getChildren().add(hBox2);
+                                Platform.runLater(() ->{
+                                    vboxForChat.getChildren().add(hBox1);
+                                    vboxForChat.getChildren().add(hBox2);
+                                });
                             }
                         });
                     }else {
                         splitMsg(message);
                         String preparedMsg = makeMsg();
-                        String lbl;
                         if (usr.equals(usrNameTxt.getText())) {
-                            lbl = "\n" + "Me : " + preparedMsg;
+
+                            HBox hBox = new HBox();
+                            hBox.setAlignment(Pos.CENTER_RIGHT);
+                            hBox.setPadding(new Insets(5,5,5,10));
+
+                            Text text = new Text(preparedMsg);
+                            TextFlow textFlow = new TextFlow(text);
+                            textFlow.setStyle("-fx-background-color: #abb8c3; -fx-font-weight: bold; -fx-background-radius: 20px");
+                            textFlow.setPadding(new Insets(5,10,5,10));
+                            text.setFill(Color.color(0,0,0));
+
+                            hBox.getChildren().add(textFlow);
+
+                            Platform.runLater(() ->{
+                                vboxForChat.getChildren().add(hBox);
+                            });
+
                         } else {
-                            lbl = "\n" + usr + " : " + preparedMsg;
+                            HBox hBox = new HBox();
+                            hBox.setAlignment(Pos.CENTER_LEFT);
+                            hBox.setPadding(new Insets(5, 5, 0, 10));
+
+                            Text text = new Text(preparedMsg);
+                            TextFlow textFlow = new TextFlow(text);
+                            textFlow.setStyle("-fx-background-color: #0693e3; -fx-font-weight: bold; -fx-color: white; -fx-background-radius: 20px");
+                            textFlow.setPadding(new Insets(5, 10, 5, 10));
+                            text.setFill(Color.color(1, 1, 1));
+
+                            hBox.getChildren().add(textFlow);
+
+                            HBox hBoxName = new HBox();
+                            hBoxName.setAlignment(Pos.CENTER_LEFT);
+                            Text textName = new Text(usr);
+                            TextFlow textFlowName = new TextFlow(textName);
+
+                            hBoxName.getChildren().add(textFlowName);
+
+                            Platform.runLater(() ->{
+                                vboxForChat.getChildren().add(hBoxName);
+                                vboxForChat.getChildren().add(hBox);
+                            });
                         }
-                        Platform.runLater(() -> {
-                            label = new Label(lbl);
-                            hBox.getChildren().add(label);
-                            vboxForChat.getChildren().add(hBox);
-                        });
                     }
                     scrlPane.vvalueProperty().bind(vboxForChat.heightProperty());
                 }
