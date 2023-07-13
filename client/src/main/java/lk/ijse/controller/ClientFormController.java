@@ -4,6 +4,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,7 +13,9 @@ import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import lk.ijse.emoji.EmojiBox;
 import org.json.JSONString;
@@ -52,6 +56,7 @@ public class ClientFormController implements Initializable {
     }
     private String usr;
     private Socket socket;
+
     private DataOutputStream dataOutputStream;
     private DataInputStream dataInputStream;
     private ArrayList<String> wordList;
@@ -121,7 +126,7 @@ public class ClientFormController implements Initializable {
     private void msg() {
         new Thread(() -> {
             try {
-                socket = new Socket("localhost", 4001);
+                socket = new Socket("localhost", 4029);
                 dataInputStream = new DataInputStream(socket.getInputStream());
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 while (socket.isConnected()) {
@@ -133,17 +138,31 @@ public class ClientFormController implements Initializable {
                             File file=new File(path);
                             Image image=new Image(file.toURI().toString());
                             ImageView img=new ImageView(image);
-                            img.setFitWidth(100);
-                            img.setFitHeight(100);
+                            img.setFitWidth(150);
+                            img.setFitHeight(150);
                             if (usr.equals(usrNameTxt.getText())){
-                                label=new Label("Me :\n\n");
-                                label.setGraphic(img);
+                                HBox hBox1=new HBox();
+                                hBox1.setPadding(new Insets(5,5,5,10));
+                                hBox1.getChildren().add(img);
+                                hBox1.setAlignment(Pos.CENTER_RIGHT);
+
+                                vboxForChat.getChildren().add(hBox1);
                             }else {
+                                HBox hBox1=new HBox();
+                                hBox1.setAlignment(Pos.CENTER_LEFT);
+                                Text text=new Text(usr);
+                                hBox1.getChildren().add(text);
                                 label=new Label(usr+" :\n\n");
                                 label.setGraphic(img);
+
+                                HBox hBox2=new HBox();
+                                hBox2.setAlignment(Pos.CENTER_LEFT);
+                                hBox2.setPadding(new Insets(5,5,5,10));
+                                hBox2.getChildren().add(img);
+
+                                vboxForChat.getChildren().add(hBox1);
+                                vboxForChat.getChildren().add(hBox2);
                             }
-                            hBox.getChildren().add(label);
-                            vboxForChat.getChildren().add(hBox);
                         });
                     }else {
                         splitMsg(message);

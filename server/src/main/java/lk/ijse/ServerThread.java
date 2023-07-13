@@ -33,7 +33,7 @@ public class ServerThread extends Thread{
                 } else if (message.startsWith("/usrLogOut//!-> ")) {
                     String[]usr=message.split("/usrLogOut//!-> ");
                     System.out.println(usr[1] + " Log Out in Chat!");
-                    threadList.remove(this);
+//                    threadList.remove(this);
                 } else {
                     for (ServerThread serverThread:threadList){
                         serverThread.dataOutputStream.writeUTF(message);
