@@ -7,22 +7,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="425.0" prefWidth="400.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LogInFormController">
+<AnchorPane prefHeight="448.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LogInFormController">
    <children>
-      <TextField fx:id="usrNameTxt" layoutX="59.0" layoutY="314.0" onAction="#usrNameTxtOnAction" onKeyTyped="#typingValidationOnKeyTyped" onMouseClicked="#mouseClickOnAction" prefHeight="43.0" prefWidth="286.0" style="-fx-background-color: tranceperant;">
+      <TextField fx:id="usrNameTxt" layoutX="58.0" layoutY="308.0" onAction="#usrNameTxtOnAction" onKeyTyped="#typingValidationOnKeyTyped" onMouseClicked="#mouseClickOnAction" prefHeight="43.0" prefWidth="286.0" style="-fx-background-color: tranceperant;">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Button fx:id="logInBtn" layoutX="156.0" layoutY="379.0" mnemonicParsing="false" onAction="#logInBtnOnAction" prefHeight="25.0" prefWidth="91.0" stylesheets="@../style/clientStyle.css" text="Log-In" />
-      <ImageView fitHeight="282.0" fitWidth="286.0" layoutX="59.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="59.0" AnchorPane.rightAnchor="59.0">
+      <Button fx:id="logInBtn" layoutX="155.0" layoutY="381.0" mnemonicParsing="false" onAction="#logInBtnOnAction" prefHeight="25.0" prefWidth="91.0" styleClass="btn" stylesheets="@../style/clientStyle.css" text="Log-In" />
+      <ImageView fitHeight="302.0" fitWidth="304.0" layoutX="50.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="48.0">
          <image>
-            <Image url="@../img/77881.jpg" />
+            <Image url="@../img/Server-bro.png" />
          </image>
       </ImageView>
-      <Line fx:id="line" endX="144.0" layoutX="199.0" layoutY="358.0" startX="-142.00001525878906" strokeWidth="2.0" />
-      <Text layoutX="56.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name :-" />
+      <Line fx:id="line" endX="144.0" layoutX="200.0" layoutY="355.0" startX="-142.00001525878906" strokeWidth="3.0" />
    </children>
 </AnchorPane>

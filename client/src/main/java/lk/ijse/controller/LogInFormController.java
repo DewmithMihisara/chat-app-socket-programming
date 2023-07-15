@@ -22,8 +22,101 @@ import java.net.Socket;
 import java.util.Objects;
 
 public class LogInFormController {
-    @FXML
-    private Line line;
+//    @FXML
+//    private Line line;
+//    @FXML
+//    private Button logInBtn;
+//    @FXML
+//    private TextField usrNameTxt;
+//    public static String usrName;
+//    static Socket socket;
+//    DataOutputStream dataOutputStream;
+//    Shake shake;
+//    static Stage stage;
+//
+//    @FXML
+//    void logInBtnOnAction(ActionEvent event) throws IOException {
+//        usrName = usrNameTxt.getText();
+//        if (usrName.equals("")) {
+//            shakeLine();
+//        } else {
+//            defaultLine();
+//
+//            socket = new Socket("localhost", 4029);
+//            dataOutputStream = new DataOutputStream(socket.getOutputStream());
+//            dataOutputStream.writeUTF("/usrLog//!-> " + usrName);
+//            dataOutputStream.flush();
+//            Parent anchorPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/clientForm.fxml")));
+//            Scene scene = new Scene(anchorPane);
+//
+//            stage = new Stage();
+//            stage.setScene(scene);
+//            stage.setTitle(usrName);
+//            stage.setResizable(false);
+//            stage.show();
+//
+//            usrNameTxt.setText("");
+//        }
+//    }
+//
+//    @FXML
+//    void typingValidationOnKeyTyped(KeyEvent event) {
+//        spaceBlockOnKeyTyped(event);
+//        handleKeyTyped();
+//    }
+//
+//    @FXML
+//    void mouseClickOnAction(MouseEvent event) {
+//        defaultLine();
+//        if (shake != null) {
+//            shake.stop();
+//        }
+//    }
+//
+//    @FXML
+//    void usrNameTxtOnAction(ActionEvent event) {
+//        logInBtn.fire();
+//    }
+//
+//
+//
+//    public static void clsStg() throws IOException {
+//        if (socket != null) {
+//            socket.close();
+//        }
+//    }
+//
+//    void shakeLine() {
+//        line.setStroke(Color.RED);
+//        shake = new Shake(line);
+//        shake.setOnFinished(actionEvent -> {
+//            defaultLine();
+//        });
+//        shake.play();
+//    }
+//
+//    void defaultLine() {
+//        line.setStroke(Color.BLACK);
+//    }
+//
+//    void spaceBlockOnKeyTyped(KeyEvent event) {
+//        if (" ".equals(event.getCharacter())) {
+//            String trimmedText = usrNameTxt.getText().trim();
+//            usrNameTxt.setText(trimmedText);
+//            usrNameTxt.positionCaret(trimmedText.length());
+//        }
+//    }
+//
+//    private void handleKeyTyped() {
+//        String inputText = usrNameTxt.getText();
+//        if (inputText.length() > 15) {
+//            String limitedText = inputText.substring(0, 15);
+//            usrNameTxt.setText(limitedText);
+//            usrNameTxt.positionCaret(limitedText.length());
+//        }
+//    }
+@FXML
+private Line line;
     @FXML
     private Button logInBtn;
     @FXML
@@ -33,18 +126,17 @@ public class LogInFormController {
     DataOutputStream dataOutputStream;
     Shake shake;
     static Stage stage;
-
     @FXML
     void logInBtnOnAction(ActionEvent event) throws IOException {
-        usrName = usrNameTxt.getText();
-        if (usrName.equals("")) {
+        usrName=usrNameTxt.getText();
+        if(usrName.equals("")){
             shakeLine();
-        } else {
+        }else {
             defaultLine();
 
-            socket = new Socket("localhost", 4029);
+            socket = new Socket("localhost", 4001);
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
-            dataOutputStream.writeUTF("/usrLog//!-> " + usrName);
+            dataOutputStream.writeUTF("/usrLog//!-> "+usrName);
             dataOutputStream.flush();
             Parent anchorPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/view/clientForm.fxml")));
             Scene scene = new Scene(anchorPane);
@@ -64,41 +156,35 @@ public class LogInFormController {
         spaceBlockOnKeyTyped(event);
         handleKeyTyped();
     }
-
     @FXML
     void mouseClickOnAction(MouseEvent event) {
         defaultLine();
-        if (shake != null) {
+        if (shake !=null){
             shake.stop();
         }
     }
-
     @FXML
     void usrNameTxtOnAction(ActionEvent event) {
         logInBtn.fire();
     }
+    @FXML
+    void clsBtnOnAction(ActionEvent event) {
 
-
-
-    public static void clsStg() throws IOException {
-        if (socket != null) {
-            socket.close();
-        }
     }
-
-    void shakeLine() {
+    public static void clsStg() throws IOException {
+        socket.close();
+    }
+    void shakeLine(){
         line.setStroke(Color.RED);
-        shake = new Shake(line);
+        shake=new Shake(line);
         shake.setOnFinished(actionEvent -> {
             defaultLine();
         });
         shake.play();
     }
-
-    void defaultLine() {
+    void defaultLine(){
         line.setStroke(Color.BLACK);
     }
-
     void spaceBlockOnKeyTyped(KeyEvent event) {
         if (" ".equals(event.getCharacter())) {
             String trimmedText = usrNameTxt.getText().trim();
@@ -106,7 +192,6 @@ public class LogInFormController {
             usrNameTxt.positionCaret(trimmedText.length());
         }
     }
-
     private void handleKeyTyped() {
         String inputText = usrNameTxt.getText();
         if (inputText.length() > 15) {

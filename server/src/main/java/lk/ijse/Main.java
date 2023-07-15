@@ -6,18 +6,16 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 public class Main {
-    static ServerThread serverThread;
     public static void main(String[] args) {
         ArrayList<ServerThread> threadList = new ArrayList<>();
         ServerSocket serversocket;
         try {
-            serversocket =new ServerSocket(4029);
+            serversocket =new ServerSocket(4001);
             while(!serversocket.isClosed()) {
                 Socket socket = serversocket.accept();
-                serverThread = new ServerThread(socket, threadList);
+                ServerThread serverThread = new ServerThread(socket, threadList);
                 threadList.add(serverThread);
                 serverThread.start();
-                System.out.println("size "+ threadList.size());
             }
         } catch (Exception e) {
             System.out.println("Error occured in main: " + e.getStackTrace());
@@ -25,5 +23,4 @@ public class Main {
             System.out.println("main");
         }
     }
-
 }
