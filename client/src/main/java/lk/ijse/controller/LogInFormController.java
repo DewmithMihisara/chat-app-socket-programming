@@ -134,7 +134,7 @@ private Line line;
         }else {
             defaultLine();
 
-            socket = new Socket("localhost", 4001);
+            socket = new Socket("localhost", 3991);
             dataOutputStream = new DataOutputStream(socket.getOutputStream());
             dataOutputStream.writeUTF("/usrLog//!-> "+usrName);
             dataOutputStream.flush();

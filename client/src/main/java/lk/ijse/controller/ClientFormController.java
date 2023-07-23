@@ -274,8 +274,6 @@ public class ClientFormController implements Initializable {
 //    }
     @FXML
     private VBox vboxForChat;
-
-
     @FXML
     private Button emojiBtn;
 
@@ -339,12 +337,6 @@ public class ClientFormController implements Initializable {
         dataOutputStream.flush();
         msgTxt.setText("");
     }
-    @FXML
-    void logOutBtnOnAction(ActionEvent event) throws IOException {
-        dataOutputStream.writeUTF("/usrLogOut//!-> "+usrNameTxt.getText());
-        dataOutputStream.flush();
-        LogInFormController.stage.close();
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -368,7 +360,7 @@ public class ClientFormController implements Initializable {
     private void msg() {
         new Thread(() -> {
             try {
-                socket = new Socket("localhost", 4001);
+                socket = new Socket("localhost", 3991);
                 dataInputStream = new DataInputStream(socket.getInputStream());
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 while (socket.isConnected()) {

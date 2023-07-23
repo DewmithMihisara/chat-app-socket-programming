@@ -47,10 +47,9 @@
       </Text>
       <ScrollPane fx:id="scrlPane" layoutX="19.0" layoutY="80.0" onMouseEntered="#scrlOnMouseEntered" onMouseExited="#scrlOnMouseExited" prefHeight="549.0" prefWidth="492.0" styleClass="transparent-scroll-pane" stylesheets="@../style/clientStyle.css">
          <content>
-            <VBox fx:id="vboxForChat" prefHeight="1.0" prefWidth="480.0" />
+            <VBox fx:id="vboxForChat" prefWidth="475.0" />
          </content>
       </ScrollPane>
-      <Button layoutX="439.0" layoutY="31.0" mnemonicParsing="false" onAction="#logOutBtnOnAction" text="log out" />
       <Line endX="276.7305908203125" layoutX="124.0" layoutY="685.0" startX="-100.0" />
       <ImageView fitHeight="60.0" fitWidth="69.0" layoutX="17.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="5.0">
          <image>

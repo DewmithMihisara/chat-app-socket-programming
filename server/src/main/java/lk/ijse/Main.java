@@ -10,7 +10,7 @@ public class Main {
         ArrayList<ServerThread> threadList = new ArrayList<>();
         ServerSocket serversocket;
         try {
-            serversocket =new ServerSocket(4001);
+            serversocket =new ServerSocket(3991);
             while(!serversocket.isClosed()) {
                 Socket socket = serversocket.accept();
                 ServerThread serverThread = new ServerThread(socket, threadList);
