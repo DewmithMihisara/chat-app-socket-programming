@@ -56,5 +56,14 @@
             <Image url="@../img/user.png" />
          </image>
       </ImageView>
+      <Button layoutX="461.0" layoutY="10.0" mnemonicParsing="false" onAction="#clsBtnOnAction" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: tranceparent;" styleClass="bt-shadow" stylesheets="@../style/clientStyle.css">
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/cross.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
