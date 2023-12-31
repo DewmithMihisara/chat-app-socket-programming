@@ -1,5 +1,8 @@
 # Real-Time Chat System
 
+![Java](https://img.shields.io/badge/Java-17-orange) ![GitHub](https://img.shields.io/github/license/DewmithMihisara/socket-programming-chat-app)
+
+
 This project is a real-time chat platform developed exclusively for Play Tech Pvt Ltd's customer service division. The system facilitates instant communication among employees, enhancing collaboration and teamwork.
 
 ## Features
