@@ -11,13 +11,6 @@ This project is a real-time chat platform developed exclusively for Play Tech Pv
 - **Security:** Implements robust user authentication and data encryption to ensure secure communication.
 - **Performance Optimization:** Optimized for performance and scalability, capable of handling a growing user base.
 
-## Technologies Used
-
-- JavaScript
-- Node.js
-- WebSocket
-- Encryption
-
 ## Installation
 
 1. Clone the repository:
